@@ -1,0 +1,29 @@
+<!doctype html>
+<title>Flaskr</title>
+<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/signup.css') }}">
+<meta name="theme-color" content="#249feb">
+<meta name="viewport" content="width=device-width"> {% block body %}
+<!--<div id="head">
+    <a href="/">
+    <h1 class="heading" align="center" autofocus >Login</h1>
+    </a>
+  </div>-->
+<div id="box_pos" align="center">
+  <div class="box">
+    <form action="{{ url_for('login') }}" method="post">
+      <a href="/">
+        <h2>Login</h2>
+      </a>
+      {% if error %}
+      <p class="error">
+        <strong>Error:</strong>
+        {{ error }} {% endif %}
+      </p>
+      <input type="text" name="username" class="form-control_1" value="{{request.form.username}}" autocomplete placeholder="your username? ">
+      <input type="password" name="password" class="form-control_1" value="{{request.form.passowrd}}" autocomplete placeholder="your password?">
+      <div id="button_box">
+        <input type="submit" value="Login" class="button">
+      </div>
+  </div>
+  </form>
+  {% endblock %}

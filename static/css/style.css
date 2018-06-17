@@ -1,0 +1,221 @@
+/* css for landing page*/
+@font-face{
+  src:url('../fonts/sans.woff2');
+  font-family: medium;
+}
+@font-face{
+  src:url('../fonts/monoton.ttf');
+  font-family: monoton;
+}
+
+body{
+  font-family: medium;
+  padding: 50px;
+ /* background-image: url('../images/background.jpg');
+  background-position: top  ;*/
+  margin: 20px auto;
+  /*background-image: repeating-linear-gradient(90deg, rgb(255, 0, 43), rgb(219, 66, 18));*/
+
+
+}
+
+h1{
+  margin: -4px auto;
+  color: #ffffff;
+  text-shadow: 6px 3px 5px rgba(0 , 0 , 0 , 0.12);
+  text-rendering: auto;
+  font-size: 70px;
+  height: auto;
+  font-family: monoton;
+  text-align: center;
+  font-weight: 100;
+}
+
+.metanav{
+  text-decoration: none;
+  font-size: 25px;
+  color: blueviolet;
+  text-align: right;
+  padding: 20px;
+}
+
+.entries{
+  padding: 5px;
+  color: black;
+}
+.page {
+  margin: 2em auto;
+  width: 61em;
+  padding: 2.8em;
+  /*background-image: linear-gradient(142deg, #f1a829, #f18629 31%, #f16529 65%, #f14429); border-radius: 5px;*/
+  box-shadow: 0 1px 4px 0 rgba(0, 0, 0, 0.2);
+  border-radius: 5px;
+  background-color: #ddd;
+  overflow: hidden;
+}
+@media (max-width:530px){
+  .page{
+    width: 100%;
+  }
+  body{
+    padding: 0px;
+    background-color: black;
+  }
+  h1{
+    margin: 1px auto;
+  }
+}
+.entries  {       list-style: none; margin: 0; padding: 0; }
+.entries li    {
+    margin: 0.8em 1.2em;
+  }
+.entries li h2  { margin-left: -1em; }
+
+
+a{
+  text-decoration: none;
+
+}
+.cards{
+  /*box-shadow: 1px 1px 1px 2px rgba(0, 0, 0, 0.5);*/
+  background: rgb(255, 255, 255) !important;
+  -webkit-transition: opacity .35s ease-in;
+  transition: opacity .35s ease-in;
+  box-shadow: 0 1px 4px 0 rgba(0,0,0,0.15);
+  border-radius: 3px;
+  padding: 20px;
+  margin: 1em auto;
+  display: block;
+  border-radius: 3px;
+}
+
+.foot {
+  vertical-align: bottom;
+  text-align: center;
+  padding: 15px;
+  font-size: 18px;
+  margin-top: 3rem;
+  line-height: 5.233;
+
+}
+
+.up{
+  position: fixed;
+  display: block;
+  right: -1em;
+  font-weight:bolder;
+border-radius:4px;
+ background-color:white;
+ box-shadow:0 1px 4px 0 rgba(0, 0, 0, 0.2);
+  bottom: 0;
+padding:5px;
+  margin-right: 40px;
+  margin-bottom: 40px;
+  z-index: 900;
+}
+.theme{
+    position: fixed;
+    display: block;
+    right: -36px;
+    font-weight: bolder;
+    border-radius: 4px;
+    background-color: rgb(255, 255, 255);
+    box-shadow: -5px 3px 21px 8px rgba(0, 0, 0, 0.2);
+    bottom: 44px;
+    padding: 5px;
+    margin-right: 40px;
+    margin-bottom: 40px;
+    z-index: 900;
+    cursor: pointer;
+}
+.form-control_1{
+  line-height: 2.4285;
+  font-size:16px;
+  border-bottom: solid 4px white;
+  font-weight: 400;
+  width: 95%;
+  height: 50px;
+  margin-bottom: 12px;
+  padding: .5em .6em;
+  display: inline-block;
+  border: 1px solid #ccc;
+  box-shadow: inset 0 1px 3px #ddd;
+  border-radius: 4px;
+  vertical-align: middle;
+  box-sizing: border-box;
+}
+.text_control{
+  line-height: 2.4285;
+  font-size:16px;
+  border-bottom: solid 4px white;
+  font-weight: 400;
+  width: 95%;
+  height: 230px;
+  resize: none;
+  margin-bottom: 12px;
+  padding: .5em .6em;
+  border: 1px solid #ccc;
+  box-shadow: inset 0 1px 3px #ddd;
+  border-radius: 4px;
+  vertical-align: middle;
+  box-sizing: border-box;
+}
+.button{
+  padding: 10px;
+  background-color: white;
+  border: 2px solid rgb(23, 155, 219);;
+  border-radius: 4px;
+  color: black;
+  font-size: 18px;
+  margin-top:4px auto;
+}
+/**
+*emoji-bar-ui
+*/
+.emoji_bar{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+ .bar{
+  background-color: white;
+  padding: .5em .6em;
+  overflow: hidden;
+  border-radius: 5px;
+  width: 31em;
+  right: 20px;
+  height: 200px;
+  resize: none;
+
+}
+/*
+footer note
+*/
+.in{
+  color: orangered;
+}
+.ia{
+  color: darkgreen;
+}
+@media (max-width:440px){
+   h1{
+color: #ffffff;
+  text-shadow: 6px 3px 5px rgba(0 , 0 , 0 , 0.12);
+  text-rendering: auto;
+  font-size: 65px;
+  height: auto;
+  font-family: monoton;
+  font-weight: 100;
+}
+}
+@media (max-width:350px){
+h1{
+color: #ffffff;
+  text-shadow: 6px 3px 5px rgba(0 , 0 , 0 , 0.12);
+  text-rendering: auto;
+  font-size: 65px;
+  height: auto;
+  font-family: monoton;
+  font-weight: 100;
+}
+}

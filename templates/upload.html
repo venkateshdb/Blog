@@ -1,0 +1,71 @@
+﻿<!doctype html>
+<html>
+
+<head>
+  <title>file uploader</title>
+  <meta name="viewport" content="width=device-width">
+  <meta name="theme-color" color="#000000">
+  <style>
+    body {
+      /*background-image: repeating-linear-gradient(39deg, rgb(242 , 48, 33),#aa0ac6);*/
+      background-color: black;
+      font-family: roboto;
+    }
+
+    @font-face {
+      src: url('static/font/roboto-medium.woff');
+      font-family: roboto;
+    }
+
+    @font-face {
+      src: url('static/font/sans.woff2');
+      font-family: sans;
+    }
+
+    .page {
+      margin: 2em auto;
+      border: 2px solid rgb(138, 43, 226);
+      box-shadow: 10px 4px blueviolet;
+      padding: 2em;
+      width: 20em;
+      position: absolute;
+      right: 400px;
+      top: 20px;
+      height: 200px;
+      left: 27%;
+      border-radius: 8px;
+      vertical-align: middle;
+      background-color: #eee;
+
+    }
+
+    .button {
+      background-color: #eee;
+      padding: 10px;
+      width: 15em;
+      border-width: 5px;
+      border-radius: 5px;
+      border-color: #41B5F8;
+      text-align: center;
+
+    }
+  </style>
+
+</head>
+
+<body align="center">
+  <div class="page">
+    <form method="post" action="{{ url_for('get_upload') }}" enctype="multipart/form-data">
+      <dt>Upload:</dt>
+      <dd>
+        <input type="file" name="photo" class="button-browse" multiple>
+      </dd>
+      <br>
+      <dd>
+        <input type="submit" value="Share" class="button" align="center">
+
+    </form>
+
+</body>
+
+</html>

@@ -1,0 +1,41 @@
+
+        html,body{
+            display: block;
+            width: 100%;
+            height: 100%;
+            margin: 0px;
+            padding: 0px;
+            font-family: cursive;
+            background:  rgb(21, 34, 47);
+            background-size:cover;
+            transition: background 1s;
+        }
+        nav{
+            display: block;
+            padding: 1em;
+            border: 3px solid #000;
+            margin: 0px;
+        }
+        nav a { 
+            display: inline-block;
+            padding:1em;
+            margin-left:1em;
+            font-size: 1.5em;
+            background: #333;
+            border: 3px solid #fff;
+            color: #fff;
+        }
+        nav a:hover{
+            border-color: #333;
+            background: #fff;
+            color: #333;
+        }
+        .alpha{
+            background-image: url('./img/ali.jpg');
+        }
+        .bravo{
+            background-image: url('./img/bravo.png');
+        }
+        .charli{
+            background-image: url('./img/cj.jpg');
+        }

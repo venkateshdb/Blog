@@ -1,0 +1,192 @@
+/*
+last-modified:12:00 PM 04-Apr-18;
+author:venkatesh bellale
+for:index.html
+*/
+@font-face{
+    src:url('../fonts/sans.woff2');
+    font-family: sans;
+    format:('woff2');
+}
+body{
+    font-family: sans;
+    font-kerning: normal;
+    background-color: rgb(243, 237, 237) !important;
+}
+a{
+    text-decoration: none;
+    color: rgb(12, 11, 11);
+}
+nav{
+    position: fixed;
+    right: 0px;
+    z-index: 1000;
+    left: 0px;
+    top: 0px;
+    background-color: aqua;
+    box-shadow: 0 1px 4px 0 rgba(0, 0, 0, 0.2);
+    height: 3em;
+}
+.header li{
+    list-style: none;
+}
+.header .right,.login,.logout{
+    float: right;
+    position: relative;
+    right: 48px;
+    top: -45px;
+    font-size: 20px;
+    background-color: rgb(238, 238, 238);
+    padding: 7px;
+    box-shadow: 0 1px 4px 0 rgba(0, 0, 0, 0.2);
+    border-radius: 2px;
+}
+.login{
+    right: 65px;
+}
+.logout{
+    right: 75px;
+}
+
+.header .left{
+    float: left;
+    position: relative;
+    left: 3px;
+    top: -45px;
+    font-size: 20px;
+    box-shadow: 0 1px 4px 0 rgba(0, 0, 0, 0.2);
+    background-color: rgb(238, 238, 238);
+    padding: 7px;
+    border-radius: 2px;
+}
+.header .header-title{
+    text-align: center;
+    position: relative;
+    font-size: 27px;
+    font-weight: bolder;
+    top: 10px;
+}
+/*---------------------------nav end--------------*/
+
+.main,.card{
+    margin-top: 7em ;
+    width: auto ;
+    box-shadow: 0 1px 4px 0 rgba(0, 0, 0, 0.2);
+    border-radius: 3px;
+    background-color: white;
+    word-spacing: 4px;
+}
+.heading-2,.title{
+    color: rgb(8, 8, 8);
+    font-size: calc(1.7px + 23px);
+    font-weight: 400;
+
+}
+.sub-title{
+    position: relative;
+    top:-19px;
+    font-style: italic;
+    font-weight: lighter;
+}
+.title::first-letter{
+    font-size: 60px;
+    font-family: 'Times New Roman';
+}
+.para{
+    word-wrap: break-word;
+    color: rgb(0, 0, 0);
+    font-weight: bolder;
+}
+
+
+/*
+footer
+
+*/
+.line{
+    width:auto;
+    border-color: #7fffd4;
+}
+.footer{
+    width: 600px auto;
+    height: 300px auto;
+    background-color:#eee;
+    color: black;
+    text-align: center;
+}
+.heart{
+    margin-top: 10px;
+}
+@media (min-width:1000px) {
+    .main,.card{
+        margin-right: 100px;
+        margin-left: 100px;
+    }
+
+}
+.image{
+    height: 300px;
+    background: center center;
+    background-size: contain;
+    border-radius: 3px;
+    z-index: 1000;
+}
+.main,.content-wrapper{
+    padding: 40px;
+}
+.link .link-text{
+    font-weight: bold;
+    margin-top: 1em;
+    text-decoration: underline;
+}
+.card.article{
+    margin-top: 4em;
+}
+
+.row{
+    display: flex;
+    flex-direction: row;
+    overflow: scroll;
+}
+
+.small-card{
+    margin-top: 5em ;
+    box-shadow: 0 1px 4px 0 rgba(0, 0, 0, 0.2);
+    border-radius: 3px;
+    background-color: white;
+    word-spacing: 4px;
+    padding: 10px
+    height: 50em;
+    width:10em;
+    margin-right: 10px;
+}
+
+.small-title{
+    font-weight: 900;
+    padding: 5px;
+}
+.small-image{
+    height: 20px;
+    background: center center;
+    background-size: contain;
+
+}
+input.upload{
+    background-image: url('../images/photo.jpg') !important;
+}
+.pretty-underline{
+  display: inline;
+  text-shadow: 1px 1px #f5f6f9, -1px 1px #f5f6f9, -1px -1px #f5f6f9 -1px -1px #f5f6f9;
+  background-color: linear-gradient(90deg, currentColor 100%, transparent 100%);
+  background-position: bottom;
+  background-repeat: no-repeat;
+  background-size: 100% 1px;
+}
+.pretty-underline::-moz-selection{
+  background-color: rgba(0, 150, 255, 0.3);
+  text-shadow: none;
+}
+.pretty-underline::selection{
+  background-color: rgba(0, 150, 255, 0.3);
+  text-shadow: none;
+}

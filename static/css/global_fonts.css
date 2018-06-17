@@ -1,0 +1,55 @@
+/*global ../font css specifing file*/
+/*can be used with @import statement in css*/
+/*@win 8:56am 4 jul 2017*/
+/*v0.0*/
+/*!!last modified --*/
+
+/*!!main sure to check/change url as per your dir structure*/
+@font-face {
+  src: url(../fonts/sans.woff2);
+  font-family: sans;
+}
+@font-face {
+  src:url(../fonts/verdana.ttf);
+  font-family: verdana;
+}
+@font-face {
+  src: url(../fonts/consola.ttf);
+  font-family: consola;
+}
+@font-face {
+  src:url(../fonts/SourceCodePro-Medium.woff2);
+  font-family:sourcecode;
+}
+@font-face {
+ src:url(../fonts/roboto-medium.woff);
+ font-family:roboto;
+}
+@font-face{
+  src:url(../fonts/codystar.ttf);
+  font-family: codystar;
+}
+@font-face{
+  src:url(../fonts/medium.woff);
+  font-family: medium;
+  format:('woff');
+}
+@font-face{
+src:url('../fonts/FormaDJRMicro-Regular.woff');
+font-family:dj;
+format('woff');
+}
+@font-face{
+src:url('../fonts/marat-sans-400-normal.woff');
+font-family:marat;
+}
+@font-face{
+src:url('../fonts/charter-400-normal.woff');
+font-family:charter;
+}
+
+@font-face{
+  src:url('../fonts/monoton.ttf');
+  font-family: monoton;
+
+}

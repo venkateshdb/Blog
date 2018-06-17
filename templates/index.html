@@ -1,0 +1,111 @@
+﻿<!DOCTYPE html>
+<html lang="eng">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,  initial-scale=1.0">
+    <meta name="theme-color" content="aqua">
+    <meta http-equiv="X-UA-Compatiable" content="ie-edge">
+    <title>MyBlog</title>
+    <link rel="stylesheet" href=" {{url_for('static', filename='css/style.css')}}">
+    <link rel="stylesheet" href=" {{url_for('static', filename='css/testmain.css')}}">
+    <link rel="icon" href="static/images/logo.png">
+    <link rel="manifest" href="static/manifest.json">
+</head>
+
+<body>
+
+    <!--navigation-->
+    <nav>
+        <div class="header">
+            <a href="/">
+                <div class="header-title">My Blog</div>
+            </a>
+            <ul>
+                {% if not session.logged_in %}
+                <li class="right">
+                    <a href="/about">About</a>
+                </li>
+                <li class="left">
+                    <a href="{{ url_for('login') }}">login</a>
+                </li>
+                {% else %}
+                <li class="logout left">
+                    <a href="{{ url_for('logout') }}">logout </a>
+                </li>
+                {% endif %}
+                <!--<li class="left"><a href="{{ url_for('show_entries')}}">Posts</a></li>-->
+            </ul>
+        </div>
+    </nav>
+
+
+
+    <!--articles-->
+    {% for entry in fetch_entries %}
+    <section class="card" id="up">
+        <div class="image" style="background-color:#dddddd;background-image:url(static/images/{{entry.image}})"></div>
+        <div class="content-wrapper">
+            <div class="title">
+                <h2>{{entry.title}}</h2>
+            </div>
+            <div class="sub-title">
+                <h3{{entry.sub_title}}></h3>
+            </div>
+            <div class="para">
+                <p class="para">{{ entry.description|safe}} {{entry.date}} {{entry.tag}} {{entry.content}}
+                </p>
+            </div>
+            <div class="link">
+                <a class="link-text" href="/" target="_blank">read post</a>
+                <img src="static/images/arrow.png" width="10px">
+            </div>
+        </div>
+    </section>
+    {% else %}
+    <p>no posts!!</p>
+    {% endfor %}
+
+    <section class="card article">
+        <div class="image" style="background-image:linear-gradient( rgba(255, 86, 255, 0.3),rgba(55, 143, 255, 0.3)),url(static/images/0_b4mqVf1dq0r8vcO-.png);"></div>
+        <div class="content-wrapper">
+            <div class="title">
+                <h2>Creating Your First Machine Learning Classifier with Sklearn</h2>
+            </div>
+            <div class="sub-title">
+                <h3/h3>
+            </div>
+            <div class="para">
+                <p class="para">Lorem ipsum dolor sit, amet consectetur adipisicing elit. Saepe nisi dicta nihil repellat amet ea voluptates
+                    a consequatur doloremque porro similique, aliquid praesentium totam placeat error dolores ratione quod
+                    laudantium.
+                </p>
+            </div>
+            <div class="link">
+                <a class="link-text" href="/" target="_blank">read post</a>
+                <img src="static/images/arrow.png" width="10px">
+            </div>
+        </div>
+    </section>
+
+
+
+
+
+
+
+
+
+
+    <a href="#up">
+        <p class="up">GO up 👍</p>
+    </a>
+
+    <hr class="line footer" color="red">
+    <footer class="footer">
+        <p class="f-text">Made with
+            <img src="static/images/heart.png" width="17px" class="heart"> by venkatesh bellale</p>
+    </footer>
+</body>
+
+</html>

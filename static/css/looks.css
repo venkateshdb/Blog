@@ -1,0 +1,150 @@
+body{
+	/*background-image:url('image.jpg');*/
+	background-attachment: fixed;
+	/*background-repeat:no-repeat;*/
+	text-align:center;
+	font-family:sans;
+	background-color: orange;
+	text-rendering: optimizeLegibility;
+lin
+}
+.head{
+	font-size:50px;
+	text-align:center;
+	color:white;
+	text-rendering: optimizeLegibility;
+	display: inline-block;
+	/*box-shadow: inset 1px 20px 0px 14px #009688;*/
+	text-orientation: mixed;
+	text-shadow: 6px 3px 3px  rgba(0, 0, 0, 0.3);
+	}
+
+#para{
+	text-align:center;
+	font-size:15px;
+}
+.form-input{
+    border: 2px solid grey;
+	padding: 5px;
+	}
+.form-input:focus{
+	background: lightyellow;
+	border-color: blue;
+	outline: none;
+	transition: border-color ease-in-out .15s, box-shadow ease-in-out .15s;
+    transition-property: border-color, box-shadow;
+    transition-duration: 0.15s, 0.15s;
+    transition-timing-function: ease-in-out, ease-in-out;
+    transition-delay: initial, initial;
+	}
+.para1 {
+	text-align:center;
+	font-size:30px;
+	background-color: #f16529;;
+	color:white;
+	font-family:sans;
+
+	font-weight:30px;
+}
+
+.para2{
+	padding-top:3px;
+	padding-bottom:3px;
+	text-align:center;
+	font-size:40px;
+	background-color: #163945;
+	color:white;
+	font-family:sans;
+	font-weight:40px;
+}
+
+/*@font-face{
+	font-family:BungeeShade;
+	src:url('BungeeShade.ttf');
+}*/
+/* custom fonts */
+@font-face{
+	font-family:sans;
+	src:url('fonts/sans.woff2')
+}
+#bara{
+	width:388px;
+	height:100px;
+	border:3px solid black;
+	background-color:#eee;
+	padding-top:20px;
+	text-align:center;
+}
+
+}
+.name :focus{
+	border:3px solid black;
+}
+#bot{
+	padding-top:88px;
+}
+
+}
+.field {
+    display: block;
+    margin-left: 2px;
+    margin-right: 2px;
+    padding-top: 0.35em;
+    padding-bottom: 0.625em;
+    padding-left: 0.75em;
+    padding-right: 0.75em;
+    border: 2px groove;
+}
+#hem{
+	overflow: hidden;
+    position: relative;
+    z-index: 10;
+    margin: 0;
+    max-width: 1440px;
+    background-color: white;
+    font: sans;
+    font-size: 100%;
+    vertical-align: baseline;
+    box-sizing: content-box;
+}
+.line{
+	color:gold;
+	height:3px;
+	background-color:gold;
+}
+.btn{
+	color:black;
+	background-color:orange;
+
+}
+.mdl-button {
+background:purple;
+    border: none;
+    border-radius: 2px;
+    color: white;
+    position: relative;
+    height: 36px;
+    width:36px;
+    margin: 0;
+    min-width: 100px;
+    padding: 0 16px;
+    display: inline-block;
+    font-family: sans;
+    font-size: 20px;
+    font-weight: 500px;
+    text-transform: uppercase;
+    line-height: 1;
+    letter-spacing: 0;
+    overflow: hidden;
+    will-change: box-shadow;
+    transition: box-shadow 0.2s cubic-bezier(0.4, 0, 1, 1), background-color 0.2s cubic-bezier(0.4, 0, 0.2, 1), color 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+    outline: none;
+    cursor: pointer;
+    text-decoration: none;
+    text-align: center;
+    line-height: 36px;
+    vertical-align: middle;
+    }
+.mdl-button:hover {
+    background-color: black;
+    }

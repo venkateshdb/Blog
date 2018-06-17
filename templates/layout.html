@@ -1,0 +1,45 @@
+﻿<!doctype html>
+<html>
+
+<head>
+  <title>Flaskr</title>
+  <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/style.css') }}">
+  <script src="{{ url_for('static', filename='js/theme.js') }}"></script>
+  <script src="{{url_for('static', filename='js/jquery.min.js')}}"></script>
+  <script src=" {{url_for('static' , filename='js/birthday.js')}} "></script>
+  <link rel="manifest" href="static/manifest.json">
+  <meta name="mobile-web-app-capable" content="yes">
+  <meta name="theme-color" content="#000000">
+  <meta name="application-name" content="learn to code">
+  <link rel="icon" sizes="192x192" href="static/images/favicon.png">
+  <script src="static/js/console.js"></script>
+  </script>
+  <!--<script src="static/main.js"></script>-->
+  <meta name="viewport" content="width=device-width">
+</head>
+
+<body class="body">
+  <h1 align="center" id="up">MY BLOG</h1>
+  <div class="page">
+    <div class="metanav">
+      {% if not session.logged_in %}
+      <a href="{{ url_for('login') }}">log in</a> &nbsp; &nbsp;
+      <a href="{{url_for('new_user')}}">signup</a> &nbsp; &nbsp; {% else %}
+      <a href="{{ url_for('logout') }}">log out</a>
+      {% endif %}
+    </div>
+
+    {% for message in get_flashed_messages() %}
+    <div class="flash">{{ message }}</div>
+    {% endfor %} {% block body %} {% endblock %}
+    <div id="footbar">
+      <footer class="foot"> Handcrafted in
+        <span class="in">In</span>d
+        <span class="ia">ia</span>
+      </footer>
+    </div>
+
+  </div>
+</body>
+
+</html>

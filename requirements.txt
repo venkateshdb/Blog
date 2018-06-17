@@ -5,7 +5,6 @@ astroid==1.6.0
 attrs==16.3.0
 Automat==0.5.0
 backports.functools-lru-cache==1.4
-BeautifulSoup==3.2.1
 bottle==0.12.13
 cffi==1.10.0
 click==6.7

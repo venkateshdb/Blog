@@ -3,4 +3,3 @@ Flask==0.12
 Flask_Compress==1.4.0
 gunicorn==19.7.1
 psycopg2==2.7.4
-sqlite3==3.8.2

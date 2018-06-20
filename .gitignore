@@ -1,2 +1,3 @@
-Thumb.db
+*.db
 *.pyc
+static/images/*.db

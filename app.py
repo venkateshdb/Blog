@@ -140,6 +140,11 @@ def new_user():
 
     return render_template('signup.html')
 
+
+# about page route
+@app.route('/about')
+def about():
+    return render_template('about.html')
 #----------------- Custom error handler----------------------------
 @app.errorhandler(404)
 def error_404(error):

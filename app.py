@@ -14,13 +14,16 @@ from flask import Flask, render_template, request, redirect, g, flash, abort, ur
 from werkzeug.utils import secure_filename
 import sqlite3
 import os
+import random
+import string
+import time
 
 #--------- App configuration & declaration ---------------------------------
 app = Flask(__name__)
 app.config.from_object(__name__)
 
 app.config.update(dict(
-database = os.path.join(app.root_path, 'user_data.db'),
+database = 'postgres://thhzvmrynenrbn:7936173332181f998242116d8045d1c868352b12e4b2fdf6332b10962e14a3aa@ec2-23-21-171-25.compute-1.amazonaws.com:5432/d9ql13d83ao9t9'
 SECRET_KEY = '\x07-\x98\xdf\xf2\xa6\x97\xebT\x13\x92\xa8\xa8h\xb1k',
 username = 'test',
 password = 'test',
@@ -73,6 +76,28 @@ def close_db(error):
 def allowed_file(filename):
     return '.' in filename and  filename.rsplit('.', 1)[1].lower() in app.config['allowed_extension']
 
+"""
+function to generate post_ids
+"""
+    #post_id = []
+    #ALPHABET = 'abcdefghijklmnopqrstuvwxyz'
+    #get_nums = str(random.sample(xrange(0,10),3))
+    #get_string = random.choice(ALPHABET)
+
+def gen():
+    return (string.digits + string.letters)
+
+def id():
+    key = [random.choice(gen()) for i in range(5)]
+    return (''.join(key))
+
+
+
+
+
+
+
+
 
 #----------------------- app routing ------------------------------------
 
@@ -92,6 +117,15 @@ def show_entries():
 def post():
     if not session.get('logged_in'):
         abort(400)
+    timestamp = time.asctime()
+    title = request.form['title']
+    sub_title = request.form['description']
+    tags = request.form['tags']
+    body = request.form['body']
+
+    #----image upload----
+    cover_img  = request
+
     return render_template('post.html')
 
 
@@ -166,7 +200,7 @@ def error_400(error):
 def send():
     return render_template('upload.html')
 
-@app.route('/get_upload' , methods=['POST' , 'GET'])
+@app.route('/get_upload')
 def get_upload():
     db = get_db()
     file = request.files['photo']
@@ -176,7 +210,10 @@ def get_upload():
         file.save(os.path.join(app.config['ftp'], filename ))
         db.commit()
     return redirect(url_for('send'))
-
-
+"""
+@app.route('/img')
+def get_img():
+    img = request.files['photo']
+"""
 if __name__ == '__main__':
-    app.run(host='0.0.0.0')
+    app.run(host='0.0.0.0', debug=True)

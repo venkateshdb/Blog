@@ -5,6 +5,24 @@
   <title>file uploader</title>
   <meta name="viewport" content="width=device-width">
   <meta name="theme-color" color="#000000">
+  <script>
+    whenReady(function() { // Run when the document is ready
+    var elts = document.getElementsByTagName("input"); // All input elements
+    for(var i = 0; i < elts.length; i++) { // Loop through them
+    var input = elts[i];
+    if (input.type !== "file") continue; // Skip all but file upload elts
+    var url = input.getAttribute("data-uploadto"); // Get upload URL
+    if (!url) continue; // Skip any without a url
+    input.addEventListener("change", function() { // When user selects file
+    var file = this.files[0]; // Assume a single file selection
+    if (!file) return; // If no file, do nothing
+    var xhr = new XMLHttpRequest(); // Create a new request
+    xhr.open("POST", url); // POST to the URL
+    xhr.send(file); // Send the file as body
+ }, false);
+ }
+});
+</script>
   <style>
     body {
       /*background-image: repeating-linear-gradient(39deg, rgb(242 , 48, 33),#aa0ac6);*/
@@ -55,10 +73,10 @@
 
 <body align="center">
   <div class="page">
-    <form method="post" action="{{ url_for('get_upload') }}" enctype="multipart/form-data">
+    <form method="get" action="{{ url_for('get_upload') }}" enctype="multipart/form-data" id="file_upload">
       <dt>Upload:</dt>
       <dd>
-        <input type="file" name="photo" class="button-browse" multiple>
+        <input type="file" name="photo" class="button-browse" multiple data-uploadto="/get_upload">
       </dd>
       <br>
       <dd>

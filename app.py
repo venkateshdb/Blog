@@ -17,6 +17,7 @@ import os
 import random
 import string
 import time
+import psycopg2
 
 #--------- App configuration & declaration ---------------------------------
 app = Flask(__name__)
@@ -37,14 +38,14 @@ app.config.from_envvar('flaskr_setting' , silent=True)
 
 def connect_db():
     """Connects to the specific database."""
-    rv = sqlite3.connect(app.config['database'])
-    rv.row_factory = sqlite3.Row
+    db = psycopg2.connect(app.config['database'])
+    rv = db.cursor()
     return rv
 
 
 def init_db():
     """Initializes the database."""
-    db = get_db()
+    db = connect_db()
     with app.open_resource('schema.sql', mode='r') as f:
         db.cursor().executescript(f.read())
     db.commit()
@@ -105,7 +106,7 @@ def id():
 # landing page
 @app.route('/')
 def show_entries():
-    db = get_db()
+    db = connect_db()
     fetch_entries = db.execute('select title, sub_title, description, date, tag, content, image from post').fetchall()
     return render_template('index.html', fetch_entries=fetch_entries)
 
@@ -132,7 +133,7 @@ def post():
 # handling login
 @app.route('/login' , methods=['GET', 'POST'])
 def login():
-    db = get_db()
+    db = connect_db()
     get_auth = db.execute('SELECT username , password FROM AUTH').fetchall()
     convert = dict(get_auth)
 
@@ -164,7 +165,7 @@ def logout():
 @app.route('/signup' , methods=['POST', 'GET'])
 #"""signup form"""
 def new_user():
-    db = get_db()
+    db = connect_db()
     if request.method == "POST":
         db = get_db()
         db.execute('insert into auth (username , password) values (?,?)' , [request.form['username'] , request.form['password']])

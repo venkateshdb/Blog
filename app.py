@@ -23,7 +23,7 @@ app = Flask(__name__)
 app.config.from_object(__name__)
 
 app.config.update(dict(
-database = 'postgres://thhzvmrynenrbn:7936173332181f998242116d8045d1c868352b12e4b2fdf6332b10962e14a3aa@ec2-23-21-171-25.compute-1.amazonaws.com:5432/d9ql13d83ao9t9'
+database = 'postgres://thhzvmrynenrbn:7936173332181f998242116d8045d1c868352b12e4b2fdf6332b10962e14a3aa@ec2-23-21-171-25.compute-1.amazonaws.com:5432/d9ql13d83ao9t9',
 SECRET_KEY = '\x07-\x98\xdf\xf2\xa6\x97\xebT\x13\x92\xa8\xa8h\xb1k',
 username = 'test',
 password = 'test',

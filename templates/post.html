@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 <!DOCTYPE html>
 <html lang="eng">
 
@@ -86,4 +87,94 @@
 
 </body>
 
+=======
+<!DOCTYPE html>
+<html lang="eng">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,  initial-scale=1.0">
+    <meta name="theme-color" content="aqua">
+    <meta http-equiv="X-UA-Compatiable" content="ie-edge">
+    <title>MyBlog</title>
+    <link rel="stylesheet" href=" {{url_for('static', filename='css/style.css')}}">
+    <link rel="stylesheet" href=" {{url_for('static', filename='css/testmain.css')}}">
+    <link rel="icon" href="static/images/logo.png">
+    <link rel="manifest" href="static/manifest.json">
+</head>
+
+<body>
+
+    <!--navigation-->
+    <nav>
+        <div class="header">
+            <a href="/">
+                <div class="header-title">My Blog</div>
+            </a>
+            <ul>
+                {% if not session.logged_in %}
+                <li class="right">
+                    <a href="/about">About</a>
+                </li>
+                <li class="left">
+                    <a href="{{ url_for('login') }}">login</a>
+                </li>
+                {% else %}
+                <li class="logout left">
+                    <a href="{{ url_for('logout') }}">logout </a>
+                </li>
+                {% endif %}
+            </ul>
+        </div>
+    </nav>
+
+    <!--post-->
+    <form action="{{ url_for('post') }}" enctype="multipart/form-data" method="post">
+        <dl>
+            <dt>Title:</dt>
+            <dd>
+                <input type="text" size="30" name="title" class="form-control_1">
+            </dd>
+
+            <dt>sub:</dt>
+            <dd>
+                <input type="text" size="25" name="sub_title" class="form-control_1">
+            </dd>
+
+            <dt>description:</dt>
+            <dd>
+                <input type="text" size="30" name="description" class="form-control_1">
+            </dd>
+
+            <dt>date:</dt>
+            <dd>
+                <input type="date" name="date">
+            </dd>
+
+            <dt>tags:</dt>
+            <dd>
+                <input type="text" name="tag" class="form-control_1">
+            </dd>
+
+            <dt>Word:</dt>
+            <dd>
+                <textarea name="content" class="text_control"></textarea>
+            </dd>
+
+            <dt>Image:</dt>
+            <dd>
+                <input type="file" name="image">
+            </dd>
+
+            <br>
+            <br>
+            <input type="submit" value="Share" class="button">
+
+        </dl>
+
+    </form>
+
+</body>
+
+>>>>>>> 9e6b3b1f47ffb4a481d5676c061ae0cf90d3f18b
 </html>

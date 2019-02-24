@@ -149,8 +149,8 @@ def login():
 
         get_username = request.form['username']
         get_password = request.form['password']
-
-        if auth.query.filter_by(username = get_username,password=get_password):
+        print(">>>:@@",auth.query.filter_by(username = get_username,password=get_password).all())
+        if auth.query.filter_by(username = get_username,password=get_password).all():
             error = "Invalid Credentials"
 
 

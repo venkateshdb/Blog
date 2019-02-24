@@ -12,59 +12,32 @@
 
 from flask import Flask, render_template, request, redirect, g, flash, abort, url_for, session
 from werkzeug.utils import secure_filename
+from flask_sqlalchemy import SQLAlchemy
+from flask_heroku import Heroku
 import sqlite3
 import os
+import random
+import string
+import time
+
+from model import Posts,auth
 
 #--------- App configuration & declaration ---------------------------------
 app = Flask(__name__)
+heroku = Heroku(app)
 app.config.from_object(__name__)
+db = SQLAlchemy(app)
+
 
 app.config.update(dict(
-database = os.path.join(app.root_path, 'user_data.db'),
+SQLALCHEMY_TRACK_MODIFICATION = False,
 SECRET_KEY = '\x07-\x98\xdf\xf2\xa6\x97\xebT\x13\x92\xa8\xa8h\xb1k',
-username = 'test',
-password = 'test',
-debug = False,
 ftp = os.path.join(app.root_path, 'static/ftp'),
 upload = os.path.join(app.root_path, 'static/user_upload'),
 allowed_extension = set(['txt', 'pdf', 'png', 'jpg', 'jpeg', 'gif' , 'mp4' , 'exe' , 'mp3' ,'xml' , 'config' , 'py'])
 ))
 app.config.from_envvar('flaskr_setting' , silent=True)
 #----------------------- database connections --------------------------------
-
-def connect_db():
-    """Connects to the specific database."""
-    rv = sqlite3.connect(app.config['database'])
-    rv.row_factory = sqlite3.Row
-    return rv
-
-
-def init_db():
-    """Initializes the database."""
-    db = get_db()
-    with app.open_resource('schema.sql', mode='r') as f:
-        db.cursor().executescript(f.read())
-    db.commit()
-
-@app.cli.command('initdb')
-def initdb_command():
-    init_db
-    print('Initialized the database.')
-"""Initializes the database."""
-
-def get_db():
-    """Opens a new database connection if there is none yet for the
-    current application context.
-    """
-    if not hasattr(g, 'sqlite_db'):
-        g.sqlite_db = connect_db()
-    return g.sqlite_db
-
-@app.teardown_appcontext
-def close_db(error):
-    """closes database connection """
-    if hasattr(g,'sqlite_db'):
-        g.sqlite_db.close()
 
 
 #--------------------- functions ------------------------------------------------
@@ -73,6 +46,28 @@ def close_db(error):
 def allowed_file(filename):
     return '.' in filename and  filename.rsplit('.', 1)[1].lower() in app.config['allowed_extension']
 
+"""
+function to generate post_ids
+"""
+    #post_id = []
+    #ALPHABET = 'abcdefghijklmnopqrstuvwxyz'
+    #get_nums = str(random.sample(xrange(0,10),3))
+    #get_string = random.choice(ALPHABET)
+
+def gen():
+    return (string.digits + string.letters)
+
+def id():
+    key = [random.choice(gen()) for i in range(5)]
+    return (''.join(key))
+
+
+
+
+
+
+
+
 
 #----------------------- app routing ------------------------------------
 
@@ -80,8 +75,8 @@ def allowed_file(filename):
 # landing page
 @app.route('/')
 def show_entries():
-    db = get_db()
-    fetch_entries = db.execute('select title, sub_title, description, date, tag, content, image from post').fetchall()
+
+    fetch_entries = Posts.query.all()
     return render_template('index.html', fetch_entries=fetch_entries)
 
 # route to add posts
@@ -92,32 +87,40 @@ def show_entries():
 def post():
     if not session.get('logged_in'):
         abort(400)
+    timestamp = time.asctime()
+    title = request.form['title']
+    sub_title = request.form['description']
+    body = request.form['body']
+
+    #----image upload----
+
+    post = Posts(timestamp,title,sub_title,body)
+
+    db.session.add(post)
+    db.session.commit()
+
     return render_template('post.html')
 
 
 # handling login
 @app.route('/login' , methods=['GET', 'POST'])
 def login():
-    db = get_db()
-    get_auth = db.execute('SELECT username , password FROM AUTH').fetchall()
-    convert = dict(get_auth)
+
 
     error = None
-
     if request.method == 'POST':
-        for key,value in convert.iteritems(): # key -> username,value -> password.
 
-            get_username = request.form['username']
-            get_password = request.form['password']
-            if key != get_username:
-                error = "Invalid username or password"
-            if  value != get_password:
-                error = "Invalid username or password"
+        get_username = request.form['username']
+        get_password = request.form['password']
 
-            else:
-                session['logged_in'] = True
-                flash('You are logged in')
-                return redirect(url_for('post'))
+        if auth.query.filter_by(username = get_username,password=get_password):
+            error = "Invalid Credentials"
+
+
+        else:
+            session['logged_in'] = True
+            flash('You are logged in')
+            return redirect(url_for('post'))
     return render_template('login.html', error=error)
 
 # handling logout
@@ -130,11 +133,14 @@ def logout():
 @app.route('/signup' , methods=['POST', 'GET'])
 #"""signup form"""
 def new_user():
-    db = get_db()
+    username = request.form['username']
+    password = request.form['password']
+
+    signup = auth(id(),usename,password)
+
     if request.method == "POST":
-        db = get_db()
-        db.execute('insert into auth (username , password) values (?,?)' , [request.form['username'] , request.form['password']])
-        db.commit()
+        db.session.add(signup)
+        db.session.commit()
         flash('signup Successfully')
         return redirect(url_for('login'))
 
@@ -165,8 +171,8 @@ def error_400(error):
 @app.route('/upload')
 def send():
     return render_template('upload.html')
-
-@app.route('/get_upload' , methods=['POST' , 'GET'])
+"""
+@app.route('/get_upload')
 def get_upload():
     db = get_db()
     file = request.files['photo']
@@ -177,6 +183,9 @@ def get_upload():
         db.commit()
     return redirect(url_for('send'))
 
-
+@app.route('/img')
+def get_img():
+    img = request.files['photo']
+"""
 if __name__ == '__main__':
-    app.run(host='0.0.0.0')
+    app.run(host='0.0.0.0', debug=True)

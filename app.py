@@ -14,13 +14,11 @@ from flask import Flask, render_template, request, redirect, g, flash, abort, ur
 from werkzeug.utils import secure_filename
 from flask_sqlalchemy import SQLAlchemy
 from flask_heroku import Heroku
-import sqlite3
 import os
 import random
 import string
 import time
 
-from model import Posts,auth
 
 #--------- App configuration & declaration ---------------------------------
 app = Flask(__name__)
@@ -37,7 +35,46 @@ upload = os.path.join(app.root_path, 'static/user_upload'),
 allowed_extension = set(['txt', 'pdf', 'png', 'jpg', 'jpeg', 'gif' , 'mp4' , 'exe' , 'mp3' ,'xml' , 'config' , 'py'])
 ))
 app.config.from_envvar('flaskr_setting' , silent=True)
-#----------------------- database connections --------------------------------
+#----------------------- database --------------------------------
+class Posts(db.Model):
+    """
+    content to be posted
+    """
+    __tablename__ = "posts"
+
+    id = db.Column(db.Integer, primary_key=True)
+    date = db.Column(db.String())
+    title = db.Column(db.String(), nullable=False)
+    sub_title = db.Column(db.String())
+    content = db.Column(db.String(), nullable=False)
+
+    def __init__(self,date,title,sub_title,content):
+        self.date = date
+        self.title = title
+        self.sub_title = sub_title
+        self.content = content
+
+    def __repr__(self):
+        return "<id {}>".format(self.id)
+
+class auth(db.Model):
+    """
+    user auth
+    """
+    __tablename__ = "auth"
+
+    user_id = db.Column(db.String(), primary_key=True, nullable=False)
+    username = db.Column(db.String(), nullable=False)
+    password = db.Column(db.String(), nullable=False)
+
+    def __init__(self,user_id,username,password):
+
+        self.user_id = user_id
+        self.username = username
+        self.password = password
+
+    def __repr__(self):
+        return "<user_id {}>".format(self.user_id)
 
 
 #--------------------- functions ------------------------------------------------
@@ -136,7 +173,7 @@ def new_user():
     username = request.form['username']
     password = request.form['password']
 
-    signup = auth(id(),usename,password)
+    signup = auth(id(),username,password)
 
     if request.method == "POST":
         db.session.add(signup)

@@ -170,12 +170,11 @@ def logout():
 @app.route('/signup' , methods=['POST', 'GET'])
 #"""signup form"""
 def new_user():
-    username = request.form['username']
-    password = request.form['password']
-
-    signup = auth(id(),username,password)
 
     if request.method == "POST":
+        username = request.form['username']
+        password = request.form['password']
+        signup = auth(id(),username,password)
         db.session.add(signup)
         db.session.commit()
         flash('signup Successfully')

@@ -92,7 +92,7 @@ function to generate post_ids
     #get_string = random.choice(ALPHABET)
 
 def gen():
-    return (string.digits + string.letters)
+    return (string.digits + string.ascii_letters)
 
 def id():
     key = [random.choice(gen()) for i in range(5)]

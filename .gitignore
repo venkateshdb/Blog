@@ -1,5 +1,4 @@
 *.db
 *.pyc
 */Thumbs.db
-static/images/*
 .vscode

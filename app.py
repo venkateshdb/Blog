@@ -120,10 +120,11 @@ def show_entries():
 
 
 # handling publishing posts
-@app.route('/post')
+@app.route('/post', methods=['GET', 'POST'])
 def post():
     if not session.get('logged_in'):
         abort(400)
+
     timestamp = time.asctime()
     title = request.form['title']
     sub_title = request.form['description']
@@ -151,8 +152,7 @@ def login():
         get_password = request.form['password']
 
         if not auth.query.filter_by(username = get_username,password=get_password).all():
-            error = "<h2 class=\"error\">Invalid Credentials</h2>"
-
+            error = "Invalid Credentials"
 
         else:
             session['logged_in'] = True

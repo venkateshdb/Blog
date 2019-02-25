@@ -125,7 +125,7 @@ def post():
     if not session.get('logged_in'):
         abort(400)
 
-    return render_template('post.html', timestamp=timestamp)
+    return render_template('post.html')
 
 @app.route('/add', methods=['GET', 'POST'])
 def add():

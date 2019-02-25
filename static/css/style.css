@@ -197,6 +197,27 @@ footer note
 .ia{
   color: darkgreen;
 }
+.flash {
+  color: rgb(0, 128, 0);
+  font-size: 15px;
+  padding: 5px;
+  margin-top: auto;
+  font-weight: lighter;
+  background-color: rgb(21, 214, 79);
+  border-color: rgb(0, 255, 255);
+  border-width: medium;
+  border-radius: 5px;
+  width: 8em;
+}
+.error{
+  color: black;
+  background-color: red;
+  padding: 5px;
+  font-size: 15px;
+  margin-top: auto;
+  border-radius: 5px;
+  width: 8em;
+}
 @media (max-width:440px){
    h1{
 color: #ffffff;

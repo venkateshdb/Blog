@@ -136,7 +136,7 @@ def post():
     db.session.add(post)
     db.session.commit()
 
-    return render_template('post.html')
+    return render_template('post.html', timestamp=timestamp)
 
 
 # handling login
@@ -151,7 +151,7 @@ def login():
         get_password = request.form['password']
         print(">>>:@@",auth.query.filter_by(username = get_username,password=get_password).all())
         if auth.query.filter_by(username = get_username,password=get_password).all():
-            error = "Invalid Credentials"
+            error = "<h2 class=\"error\">Invalid Credentials</h2>"
 
 
         else:
@@ -164,7 +164,7 @@ def login():
 @app.route('/logout')
 def logout():
     session.pop('logged_in', None)
-    flash('<h1>You are logged out</h1>')
+    flash('<h1 class="flash">You are logged out</h1>')
     return redirect(url_for('show_entries'))
 
 @app.route('/signup' , methods=['POST', 'GET'])
@@ -177,7 +177,7 @@ def new_user():
         signup = auth(id(),username,password)
         db.session.add(signup)
         db.session.commit()
-        flash('signup Successfully')
+        flash('<h2 class="flash">signup Successfully</h2>')
         return redirect(url_for('login'))
 
     return render_template('signup.html')

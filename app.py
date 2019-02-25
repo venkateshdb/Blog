@@ -125,10 +125,14 @@ def post():
     if not session.get('logged_in'):
         abort(400)
 
+    return render_template('post.html', timestamp=timestamp)
+
+@app.route('/add', methods=['GET', 'POST'])
+def add():
     timestamp = time.asctime()
     title = request.form['title']
     sub_title = request.form['description']
-    body = request.form['body']
+    body = request.form['content']
 
     #----image upload----
 
@@ -137,7 +141,7 @@ def post():
     db.session.add(post)
     db.session.commit()
 
-    return render_template('post.html', timestamp=timestamp)
+    return redirect(url_for('show_entries'))
 
 
 # handling login
@@ -177,7 +181,7 @@ def new_user():
         signup = auth(id(),username,password)
         db.session.add(signup)
         db.session.commit()
-        flash('<h2 class="flash">signup Successfully</h2>')
+        flash('signup Successfully')
         return redirect(url_for('login'))
 
     return render_template('signup.html')
